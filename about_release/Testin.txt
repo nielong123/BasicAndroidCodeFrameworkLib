@@ -1,0 +1,27 @@
+初始化SDK
+
+在Application的入口Activity中，添加
+import com.testin.agent.TestinAgent;
+在Application入口Activity中的onCreate()方法中，添加
+TestinAgent.init(this, "1501117d41a85fcc5e3ddf1f8f4f2b73", "your channel ID");
+channel id：应用所发布的渠道名称，自定义字符串，如应用宝可以写yingyongbao，可以为空
+如果需要使用manifest.xml中配置appkey和渠道号或需要自定义配置的初始化方法，请查看:
+http://crash.testin.cn/support/2#初始化SDK
+设置混淆
+
+1、对于Android应用程序，开发人员必须使用混淆的ProGuard的工具，它们的功能名称，以减少应用程序的大小，并防止他人逆向工程的应用程序源的选项。为了与人类可读的名称替换混淆的名称，开发者使用Proguard的映射文件。
+
+2、在混淆打包时，请在混淆文件proguard.cfg或proguard－project.txt中添加
+
+-libraryjars /libs/tncrash.jar
+-dontwarn com.testin.agent.**
+-keep class com.testin.agent.** {*;}
+3、为了得到行号信息，请确保您保留的文件名和行号在您的ProGuard.CFG设置文件。
+
+-keepattributes SourceFile, LineNumberTable
+
+
+		sppkey:1501117d41a85fcc5e3ddf1f8f4f2b73
+		用户名：894592858@qq.com
+		密码：123456
+		网址：http://www.testin.cn/app-manage/index

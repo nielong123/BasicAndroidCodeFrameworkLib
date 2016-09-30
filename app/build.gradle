@@ -1,23 +1,52 @@
 apply plugin: 'com.android.application'
 
 android {
+
+
+    signingConfigs {
+        releaseConfig {
+            storeFile file("e:\\key\\traffic.keystore")
+            storePassword "exsun2015"
+            keyAlias "traffic"
+            keyPassword "exsun2015"
+        }
+        debugConfig {
+
+        }
+    }
+
+
+
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "mybasicandroidcodelib.nl.org.mybasicandroidcodelib"
-        minSdkVersion 24
+        minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.releaseConfig
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['jniLibs']
+        }
+    }
 }
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
