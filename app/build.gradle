@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
 
 
@@ -44,6 +49,18 @@ android {
         main {
             jniLibs.srcDirs = ['jniLibs']
         }
+    }
+
+
+    //设置虚拟机堆内存空间大小，避免在编译期间OOM
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+    //打包不检查
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
