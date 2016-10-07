@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/library/common" />
+            <option value="$PROJECT_DIR$/library/irecyclerview" />
+            <option value="$PROJECT_DIR$/library/jcvideoplayer" />
             <option value="$PROJECT_DIR$/library/photoPicker" />
             <option value="$PROJECT_DIR$/library/selectordialog" />
           </set>
