@@ -110,6 +110,11 @@ public class BigImagePagerActivity extends BaseActivity{
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
     public void initPresenter() {
 
     }

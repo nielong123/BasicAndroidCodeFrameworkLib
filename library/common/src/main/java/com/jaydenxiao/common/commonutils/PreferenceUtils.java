@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 /****
- *  Nl 2016-8-17
+ * Nl 2016-8-17
  */
 public class PreferenceUtils {
     private static final String SettingFileName = "base_config";
@@ -94,4 +94,5 @@ public class PreferenceUtils {
         }
         return null;
     }
+
 }
