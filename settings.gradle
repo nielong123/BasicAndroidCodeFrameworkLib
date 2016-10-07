@@ -1,1 +1,4 @@
 include ':app'
+include ':library:common'
+include ':library:selectordialog'
+include ':library:photoPicker'
