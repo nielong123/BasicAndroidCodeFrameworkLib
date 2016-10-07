@@ -21,7 +21,6 @@ public class NetWorkUtils {
      * @return
      */
     public static boolean isNetConnected(Context paramContext) {
-        boolean i = false;
         NetworkInfo localNetworkInfo = ((ConnectivityManager) paramContext
                 .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
         if ((localNetworkInfo != null) && (localNetworkInfo.isAvailable()))
