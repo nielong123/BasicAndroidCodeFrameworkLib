@@ -6,4 +6,9 @@
 
     <color name="divider_line_c">#979797</color>
     <color name="normal_text_c">#333333</color>
+
+
+    <!--MyStyle-->
+    <color name="mainText_Style">#ff000000</color>
+    <color name="helpText_Style">#ff808080</color>
 </resources>

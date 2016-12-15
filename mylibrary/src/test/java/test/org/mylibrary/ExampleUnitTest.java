@@ -1,8 +1,7 @@
-package com.example.jcvideoplayer;
+package test.org.mylibrary;
 
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.*;
 
 /**

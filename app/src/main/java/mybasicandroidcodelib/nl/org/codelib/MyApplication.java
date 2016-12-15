@@ -2,13 +2,13 @@ package mybasicandroidcodelib.nl.org.codelib;
 
 import android.app.Application;
 
+import com.jaydenxiao.common.commonutils.PreferenceUtils;
 import com.orhanobut.logger.Logger;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
-import mybasicandroidcodelib.nl.org.codelib.utils.PreferenceUtils;
 import okhttp3.OkHttpClient;
 
 
