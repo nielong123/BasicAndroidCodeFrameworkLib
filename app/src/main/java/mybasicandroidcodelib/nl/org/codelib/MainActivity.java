@@ -9,6 +9,7 @@ import com.jaydenxiao.common.base.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mybasicandroidcodelib.nl.org.codelib.utils.ToastCommonUtil;
+import mybasicandroidcodelib.nl.org.codelib.widget.SearchView;
 import mybasicandroidcodelib.nl.org.codelib.widget.TitleView;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
@@ -18,6 +19,8 @@ public class MainActivity extends BaseActivity {
     TextView text;
     @Bind(R.id.titleview)
     TitleView titleview;
+    @Bind(R.id.searchview)
+    SearchView searchview;
 
     @Override
     public int getLayoutId() {
@@ -37,7 +40,13 @@ public class MainActivity extends BaseActivity {
         titleview.setRightOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastCommonUtil.showCommonToast(MainActivity.this, "Hi~");
+                ToastCommonUtil.showCommonToast(MainActivity.this, "Hi Title~");
+            }
+        });
+        searchview.setSearch_OnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastCommonUtil.showCommonToast(MainActivity.this, "Hi Search~");
             }
         });
     }

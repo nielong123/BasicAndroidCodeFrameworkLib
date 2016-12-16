@@ -4,10 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.photopicker.R;
 import com.yuyh.easyadapter.abslistview.EasyLVAdapter;
 import com.yuyh.easyadapter.abslistview.EasyLVHolder;
 import com.yuyh.library.imgsel.ImgSelConfig;
-import com.yuyh.library.imgsel.R;
 import com.yuyh.library.imgsel.bean.Folder;
 import com.yuyh.library.imgsel.common.OnFolderChangeListener;
 

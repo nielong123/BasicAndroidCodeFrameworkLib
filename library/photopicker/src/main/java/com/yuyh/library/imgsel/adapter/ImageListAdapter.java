@@ -8,10 +8,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.example.photopicker.R;
 import com.yuyh.easyadapter.recyclerview.EasyRVAdapter;
 import com.yuyh.easyadapter.recyclerview.EasyRVHolder;
 import com.yuyh.library.imgsel.ImgSelConfig;
-import com.yuyh.library.imgsel.R;
 import com.yuyh.library.imgsel.bean.Image;
 import com.yuyh.library.imgsel.common.OnItemClickListener;
 

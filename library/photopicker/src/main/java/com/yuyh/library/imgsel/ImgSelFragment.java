@@ -24,6 +24,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.photopicker.R;
 import com.yuyh.library.imgsel.adapter.FolderListAdapter;
 import com.yuyh.library.imgsel.adapter.ImageListAdapter;
 import com.yuyh.library.imgsel.bean.Folder;

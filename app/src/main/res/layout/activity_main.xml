@@ -13,8 +13,9 @@
         android:layout_height="48dp" />
 
     <mybasicandroidcodelib.nl.org.codelib.widget.SearchView
+        android:id="@+id/searchview"
         android:layout_width="match_parent"
-        android:layout_height="48dp"/>
+        android:layout_height="48dp" />
 
     <TextView
         android:id="@+id/text"
