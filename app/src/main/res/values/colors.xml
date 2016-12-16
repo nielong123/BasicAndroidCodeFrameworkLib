@@ -11,4 +11,5 @@
     <!--MyStyle-->
     <color name="mainText_Style">#ff000000</color>
     <color name="helpText_Style">#ff808080</color>
+    <color name="helpBackground">#fff5f5f5</color>
 </resources>
