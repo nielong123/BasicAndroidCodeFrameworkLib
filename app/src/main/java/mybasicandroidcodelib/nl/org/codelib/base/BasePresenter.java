@@ -1,4 +1,4 @@
-package com.jaydenxiao.common.base;
+package mybasicandroidcodelib.nl.org.codelib.base;
 
 import android.content.Context;
 

@@ -44,6 +44,7 @@ public class TitleView extends FrameLayout {
         title_right_iv.setVisibility(VISIBLE);
     }
 
+
     public void setTitle_text(String str) {
         title_text.setText(str);
     }

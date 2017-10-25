@@ -1,15 +1,5 @@
 package mybasicandroidcodelib.nl.org.codelib.api;
 
-import com.exsum.exsuncompany_postoffice.requestBean.AddNewSchedulingRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.GetCarInfoRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.IllegalDetailRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.KpiRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.LoginRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.ShowDateBean;
-import com.exsum.exsuncompany_postoffice.requestBean.ShowStartinfoRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.ShowYlfldRequestBean;
-import com.exsum.exsuncompany_postoffice.requestBean.ShowYljbRequestBean;
-import com.jaydenxiao.common.basebean.BaseRespose;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -21,82 +11,6 @@ import rx.Observable;
  * on 2016.06.15:47
  */
 public interface ApiService {
-
-    @GET("hbgps/app/login")
-    Observable<BaseRespose<LoginRequestBean.DataBean>> loginApiService(@Query("username") String username, @Query("password") String password);
-
-    @GET("hbgps/app/showStartinfo")
-    Observable<BaseRespose<ShowStartinfoRequestBean.DataBean>> showStartInfoApiService(@Query("username") String username,
-                                                                                       @Query("begintm") String begintm,
-                                                                                       @Query("endtm") String endtm);
-
-    @GET("hbgps/app/deleteStartinfo")
-    Observable<BaseRespose<ShowStartinfoRequestBean.DataBean>> deleteStartInfoApiService(@Query("startinfo") String startinfo);
-
-    @GET("hbgps/app/editSaveStartinfo")
-    Observable<BaseRespose<AddNewSchedulingRequestBean.DataBean>> addStartInfoApiService(@Query("username") String username,
-                                                                                         @Query("yldm") String yldm,
-                                                                                         @Query("schkindinfo") String schkindinfo,
-                                                                                         @Query("lienceid") String lienceid,
-                                                                                         @Query("begintm") String begintm,
-                                                                                         @Query("firstid") String firstid,
-                                                                                         @Query("secid") String secid,
-                                                                                         @Query("thrid") String thrid);
-
-    //kpi报表
-    @GET("hbgps/app/kpi")
-    Observable<BaseRespose<KpiRequestBean.DataBean>> showKPIApiService(@Query("begin") String begin,
-                                                                       @Query("end") String end,
-                                                                       @Query("username") String username);
-
-    //    邮路分路段正常运行分析表
-    @GET("hbgps/app/showYlfld")
-    Observable<BaseRespose<ShowYlfldRequestBean.DataBean>> showYlfldApiService(@Query("begin") String begin,
-                                                                               @Query("end") String end,
-                                                                               @Query("js") String js,
-                                                                               @Query("lc") String lc,
-                                                                               @Query("sc") String sc,
-                                                                               @Query("yldm") String yldm);
-
-
-//    http://192.168.1.125:8080/hbgps/app/showDate?begintm=1490630400000&endtm=1490716800000&yldm=2343000046
-
-    @GET("hbgps/app/showDate")
-    Observable<BaseRespose<ShowDateBean.DataBean>> showDateApiService(@Query("begintm") String begintm,
-                                                                      @Query("endtm") String endtm,
-                                                                      @Query("yldm") String yldm);
-
-
-    //    http://192.168.1.125:8080/hbgps/app/showYljb?begin=1490716800000&grpid=1&username=admin
-    @GET("hbgps/app/showYljb")
-    Observable<BaseRespose<ShowYljbRequestBean.DataBean>> showYljbApiService(@Query("begin") String begin,
-                                                                             @Query("grpid") String grpid,
-                                                                             @Query("username") String username);
-
-//        http://192.168.1.125:8080/hbgps/app/showZlb?begin=1490630400000&end=1490716800000&js(级数)=2&lc(里程范围)=5&sc(时长范围)=10	邮路分路段运行资料表
-
-
-    //	邮路分路段运行资料表
-    @GET("hbgps/app/showZlb")
-    Observable<BaseRespose<ShowYljbRequestBean.DataBean>> showZlbApiService(@Query("begin") String begin,
-                                                                            @Query("end") String end,
-                                                                            @Query("js") String js,
-                                                                            @Query("ls") String lc,
-                                                                            @Query("sc") String sc);
-
-
-    //	查询车辆状态,不传查所有
-    @GET("hbgps/app/curtraceinfo")
-    Observable<BaseRespose<GetCarInfoRequestBean.DataBean>> getCarInfoService(@Query("lienceid") String lienceid);
-
-
-    //	违规详情
-    @GET("hbgps/app/out")
-    Observable<BaseRespose<IllegalDetailRequestBean.DataBean>> getIllegalDetailService(@Query("username") String username,
-                                                                                       @Query("begin") String begin,
-                                                                                       @Query("end") String end,
-                                                                                       @Query("grpid") String grpid,
-                                                                                       @Query("alamtype") String alamtype);
 
 
 // @GET("login")

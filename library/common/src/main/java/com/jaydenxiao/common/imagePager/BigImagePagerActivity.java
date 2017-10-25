@@ -21,7 +21,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.jaydenxiao.common.R;
-import com.jaydenxiao.common.base.BaseActivity;
+import mybasicandroidcodelib.nl.org.codelib.base.BaseActivity;
 import com.jaydenxiao.common.commonwidget.ViewPagerFixed;
 
 import java.util.ArrayList;

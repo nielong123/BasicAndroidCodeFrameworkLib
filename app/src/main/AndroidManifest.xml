@@ -3,7 +3,14 @@
     package="mybasicandroidcodelib.nl.org.mybasicandroidcodelib">
 
     <user-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <uses-permission android:name="android.permission.READ_SMS" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name="mybasicandroidcodelib.nl.org.codelib.app.AppApplication"
         android:allowBackup="true"
@@ -11,7 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="mybasicandroidcodelib.nl.org.codelib.MainActivity">
+        <activity android:name="mybasicandroidcodelib.nl.org.codelib.ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +32,10 @@
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />
         </activity>
+        <activity
+            android:name="mybasicandroidcodelib.nl.org.codelib.ui.main.MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity android:name="mybasicandroidcodelib.nl.org.codelib.ui.carList.DetailInfotActivity" />
     </application>
 
 </manifest>

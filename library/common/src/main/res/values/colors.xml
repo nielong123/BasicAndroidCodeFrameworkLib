@@ -83,5 +83,5 @@
     <color name="alpha_90_black">#E6000000</color>
     <color name="alpha_95_black">#F2000000</color>
 
-
+    <color name="tip">#88303F9F</color>
 </resources>

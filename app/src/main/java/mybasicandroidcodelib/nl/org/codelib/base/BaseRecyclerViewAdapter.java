@@ -1,4 +1,4 @@
-package com.jaydenxiao.common.base;
+package mybasicandroidcodelib.nl.org.codelib.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
