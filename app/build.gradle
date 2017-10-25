@@ -106,4 +106,13 @@ dependencies {
     compile project(':library:photoPicker')
     compile 'com.airbnb.android:lottie:1.0.3'
     compile 'com.bigkoo:alertview:1.0.3'
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    // or 1.4-beta1
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    // or 1.4-beta1
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }

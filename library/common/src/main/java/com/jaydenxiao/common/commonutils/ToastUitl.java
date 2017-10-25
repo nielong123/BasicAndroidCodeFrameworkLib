@@ -22,7 +22,7 @@ public class ToastUitl {
     private static Toast toast;
     private static Toast toast2;
 
-    private static Toast initToast(CharSequence message, int duration) {
+    public static Toast initToast(CharSequence message, int duration) {
         if (toast == null) {
             toast = Toast.makeText(BaseApplication.getAppContext(), message, duration);
         } else {

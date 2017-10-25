@@ -1,13 +1,13 @@
 package mybasicandroidcodelib.nl.org.codelib.app;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.navi.logger.Logger;
-import com.exsum.exsuncompany_postoffice.config.Config;
 import com.jaydenxiao.common.BuildConfig;
 import com.jaydenxiao.common.baseapp.BaseApplication;
 import com.jaydenxiao.common.commonutils.LogUtils;
@@ -19,6 +19,8 @@ import com.tencent.bugly.Bugly;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import mybasicandroidcodelib.nl.org.codelib.config.Config;
 
 /**
  * APPLICATION
@@ -54,7 +56,7 @@ public class AppApplication extends BaseApplication {
     void initModel() {
         PreferenceUtils.init(this);
         LogUtils.logInit(BuildConfig.LOG_DEBUG);
-        ToastUitl.init(mApplicationContext);
+        ToastUitl.initToast("hello", Toast.LENGTH_SHORT);
         initLocation();
         Bugly.init(getApplicationContext(), Config.BuglyID, false);
     }

@@ -5,7 +5,7 @@
     <user-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <application
-        android:name="mybasicandroidcodelib.nl.org.codelib.MyApplication"
+        android:name="mybasicandroidcodelib.nl.org.codelib.app.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
