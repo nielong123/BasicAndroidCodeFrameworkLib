@@ -1,6 +1,6 @@
 package mybasicandroidcodelib.nl.org.codelib.ui.carList;
 
-import mybasicandroidcodelib.nl.org.codelib.base.BaseActivity;
+import com.jaydenxiao.common.base.BaseActivity;
 
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 

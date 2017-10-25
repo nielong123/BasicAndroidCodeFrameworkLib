@@ -26,7 +26,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import mybasicandroidcodelib.nl.org.codelib.base.BaseActivity;
+import com.jaydenxiao.common.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

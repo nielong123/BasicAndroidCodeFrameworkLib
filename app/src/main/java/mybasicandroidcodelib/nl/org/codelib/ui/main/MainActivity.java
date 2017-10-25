@@ -4,8 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import mybasicandroidcodelib.nl.org.codelib.base.BaseActivity;
-import mybasicandroidcodelib.nl.org.codelib.base.BaseRecyclerViewAdapter;
+import com.jaydenxiao.common.base.BaseActivity;
 
 import butterknife.Bind;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
@@ -17,7 +16,6 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.recyclerview)
     RecyclerView recyclerview;
 
-    BaseRecyclerViewAdapter recyclerViewAdapter;
 //    @Bind(R.id.searchview)
 //    SearchView searchview;
 
@@ -59,12 +57,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private class RecyclerViewAdapter extends BaseRecyclerViewAdapter {
-
-        public RecyclerViewAdapter(Context context) {
-            super(context);
-        }
-    }
 
 
 }

@@ -6,20 +6,28 @@
       <module fileurl="file://$PROJECT_DIR$/common/BasicAndroidCodeFrameworkLib-common.iml" filepath="$PROJECT_DIR$/common/BasicAndroidCodeFrameworkLib-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/photopicker/BasicAndroidCodeFrameworkLib-photopicker.iml" filepath="$PROJECT_DIR$/photopicker/BasicAndroidCodeFrameworkLib-photopicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/DriverHelper_for_Loudi.iml" filepath="$PROJECT_DIR$/DriverHelper_for_Loudi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DriverHelper_for_Loudi.iml" filepath="$PROJECT_DIR$/DriverHelper_for_Loudi.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyBasicAndroidCodeLib.iml" filepath="$PROJECT_DIR$/MyBasicAndroidCodeLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/common/common.iml" filepath="$PROJECT_DIR$/library/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/common/common.iml" filepath="$PROJECT_DIR$/library/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/common/common.iml" filepath="$PROJECT_DIR$/library/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/irecyclerview/irecyclerview.iml" filepath="$PROJECT_DIR$/library/irecyclerview/irecyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/irecyclerview/irecyclerview.iml" filepath="$PROJECT_DIR$/library/irecyclerview/irecyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/irecyclerview/irecyclerview.iml" filepath="$PROJECT_DIR$/library/irecyclerview/irecyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/jcvideoplayer/jcvideoplayer.iml" filepath="$PROJECT_DIR$/library/jcvideoplayer/jcvideoplayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/jcvideoplayer/jcvideoplayer.iml" filepath="$PROJECT_DIR$/library/jcvideoplayer/jcvideoplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/jcvideoplayer/jcvideoplayer.iml" filepath="$PROJECT_DIR$/library/jcvideoplayer/jcvideoplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/photopicker/photoPicker.iml" filepath="$PROJECT_DIR$/library/photopicker/photoPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/photopicker/photoPicker.iml" filepath="$PROJECT_DIR$/library/photopicker/photoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/photoPicker/photoPicker.iml" filepath="$PROJECT_DIR$/library/photoPicker/photoPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/selectordialog/selectordialog.iml" filepath="$PROJECT_DIR$/library/selectordialog/selectordialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/selectordialog/selectordialog.iml" filepath="$PROJECT_DIR$/library/selectordialog/selectordialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/selectordialog/selectordialog.iml" filepath="$PROJECT_DIR$/library/selectordialog/selectordialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/test.iml" filepath="$PROJECT_DIR$/library/test.iml" />

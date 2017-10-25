@@ -100,8 +100,8 @@ dependencies {
     compile project(':library:selectordialog')
     compile project(':library:common')
     compile project(':library:photoPicker')
+    compile project(':library:irecyclerview')//万能适配器和recyclerview
 
-    // or 1.4-beta1
     // or 1.4-beta1
     compile 'com.orhanobut:logger:1.8'
     compile 'com.cjj.materialrefeshlayout:library:1.3.0'
