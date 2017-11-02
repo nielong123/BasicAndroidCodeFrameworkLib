@@ -1,9 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mybasicandroidcodelib.nl.org.codelib.ui.carList.DetailInfotActivity">
+    android:orientation="vertical"
+    android:showDividers="middle|end|beginning|none"
+    tools:context="mybasicandroidcodelib.nl.org.codelib.ui.detail.DetailInfotActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.jaydenxiao.common.commonwidget.NormalTitleBar
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/carno"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawableEnd="@mipmap/big_icon_bt_one_sel"
+        android:drawableRight="@mipmap/big_icon_bt_one_sel"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="40dp"
+        android:text="车牌号:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/carsstate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="定车辆状态:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="定位:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/coachname"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="教练员:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/stuname"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="学员:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/gpstime"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="时间:"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/longitudenew"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="经度:"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/latitudenew"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="纬度:"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="140dp" />
+
+
+</LinearLayout>

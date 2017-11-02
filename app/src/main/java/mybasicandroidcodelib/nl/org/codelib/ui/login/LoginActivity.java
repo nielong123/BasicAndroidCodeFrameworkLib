@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.app.LoaderManager.LoaderCallbacks;
@@ -17,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,12 +28,25 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jaydenxiao.common.base.BaseActivity;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
+import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
+import mybasicandroidcodelib.nl.org.codelib.bean.LoginBean;
+import mybasicandroidcodelib.nl.org.codelib.config.Config;
+import mybasicandroidcodelib.nl.org.codelib.ui.CarListActivity;
 import mybasicandroidcodelib.nl.org.codelib.ui.main.MainActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
@@ -40,7 +55,6 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-//public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor> {
 
     /**
@@ -159,52 +173,48 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        startActivity(MainActivity.class);
-        finish();
-//        if (mAuthTask != null) {
-//            return;
-//        }
-//
-//        // Reset errors.
-//        mEmailView.setError(null);
-//        mPasswordView.setError(null);
-//
-//        // Store values at the time of the login attempt.
+        if (mAuthTask != null) {
+            return;
+        }
+
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+
+        // Store values at the time of the login attempt.
 //        String email = mEmailView.getText().toString();
 //        String password = mPasswordView.getText().toString();
-//
-//        boolean cancel = false;
-//        View focusView = null;
-//
-//        // Check for a valid password, if the user entered one.
-//        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-//            mPasswordView.setError(getString(R.string.error_invalid_password));
-//            focusView = mPasswordView;
-//            cancel = true;
-//        }
-//
-//        // Check for a valid email address.
-//        if (TextUtils.isEmpty(email)) {
-//            mEmailView.setError(getString(R.string.error_field_required));
-//            focusView = mEmailView;
-//            cancel = true;
-//        } else if (!isEmailValid(email)) {
-//            mEmailView.setError(getString(R.string.error_invalid_email));
-//            focusView = mEmailView;
-//            cancel = true;
-//        }
-//
-//        if (cancel) {
-//            // There was an error; don't attempt login and focus the first
-//            // form field with an error.
-//            focusView.requestFocus();
-//        } else {
-//            // Show a progress spinner, and kick off a background task to
-//            // perform the user login attempt.
-//            showProgress(true);
-//            mAuthTask = new UserLoginTask(email, password);
-//            mAuthTask.execute((Void) null);
-//        }
+        String email = "wh";
+        String password = "ldjp123456";
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            showProgress(true);
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute(email, password);
+        }
     }
 
     private boolean isEmailValid(String email) {
@@ -311,7 +321,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<String, String, Boolean> {
 
         private final String mEmail;
         private final String mPassword;
@@ -322,26 +332,10 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(String... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
+            return getLogin(params[0], params[1]);
         }
 
         @Override
@@ -350,6 +344,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             showProgress(false);
 
             if (success) {
+                startActivity(CarListActivity.class);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -362,6 +357,43 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    private boolean getLogin(final String loginName, final String pwd) {
+
+        String result = null;
+        try {
+            SoapObject request = new SoapObject(ServiceConfig.nameSpace, ServiceConfig.methodName);//NameSpace
+            //webService方法中的参数，这个根据你的webservice来，可以没有。
+            //但请注意，参数名称和参数类型客户端和服务端一定要一致，否则将可能获取不到你想要的
+            request.addProperty("jkxlh", "21EC2020-3AEA-1069-A2DD-08002B30309D");
+            request.addProperty("jkid", "LdUserLogin");
+            request.addProperty("CarNo", "");
+            request.addProperty("LoginName", loginName);
+            request.addProperty("Pwd", pwd);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE ht = new HttpTransportSE(ServiceConfig.url);
+            ht.call(ServiceConfig.soapAction, envelope);
+
+            if (envelope.getResponse() != null) {
+                SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
+                result = response.toString();           //这里获得了webService的返回值
+            }
+
+        } catch (Exception e) {
+            result = e.getMessage();
+        }
+        LoginBean bean = null;
+        if (!TextUtils.isEmpty(result)) {
+            Gson gson = new GsonBuilder().create();
+            bean = gson.fromJson(result, LoginBean.class);
+            Config.loginBean = bean;
+        }
+        return bean.getCode() == 1 ? true : false;
     }
 }
 

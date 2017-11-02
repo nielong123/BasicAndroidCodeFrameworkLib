@@ -10,11 +10,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="mybasicandroidcodelib.nl.org.codelib.app.AppApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launch"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -35,7 +36,19 @@
         <activity
             android:name="mybasicandroidcodelib.nl.org.codelib.ui.main.MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name="mybasicandroidcodelib.nl.org.codelib.ui.carList.DetailInfotActivity" />
+        <activity android:name="mybasicandroidcodelib.nl.org.codelib.ui.detail.DetailInfotActivity" />
+        <activity android:name="mybasicandroidcodelib.nl.org.codelib.ui.CarListActivity" />
+        <activity
+            android:name="mybasicandroidcodelib.nl.org.codelib.ui.MapActivity"
+            android:launchMode="singleInstance" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f7043a4c4f0ee1e04ad3a67c727effa0" />
+
+        <activity android:name="mybasicandroidcodelib.nl.org.codelib.ui.JurisdictionActivity"></activity>
     </application>
 
 </manifest>

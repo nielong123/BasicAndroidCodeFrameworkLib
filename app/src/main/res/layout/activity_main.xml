@@ -1,37 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="mybasicandroidcodelib.nl.org.codelib.ui.CarListActivity">
 
-    <TextView
-        android:id="@+id/titleview"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="@color/alpha_20_white"
-        android:gravity="center"
-        android:text="车 辆 列 表"
-        android:textSize="24sp" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/alpha_20_white" />
-
-    <com.aspsine.irecyclerview.IRecyclerView
-        android:id="@+id/irc"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:loadMoreEnabled="true"
-        app:refreshEnabled="true"
-        app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header" />
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/recyclerview"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" />-->
-
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
