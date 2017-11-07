@@ -101,16 +101,16 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
     private static class Level_0_ViewHolder extends MultiLevelViewHolder<RootNode.DataBean> {
 
-        private TextView tvLevel_0_Name;
+        private TextView tvName;
 
         Level_0_ViewHolder(View itemView, OnMultiLevelItemClickListener listener) {
             super(itemView, TYPE_LEVEL_0, listener);
-            tvLevel_0_Name = (TextView) itemView.findViewById(R.id.city_name);
+            tvName = (TextView) itemView.findViewById(R.id.name);
         }
 
         @Override
         public void bindViewHolder(RootNode.DataBean data) {
-            tvLevel_0_Name.setText(data.getName());
+            tvName.setText(data.getName());
         }
     }
 
@@ -128,16 +128,32 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
     private static class Level_1_ViewHolder extends MultiLevelViewHolder<RootNode.ChildNode1> {
 
-        private TextView tvLevel_1_Name;
+        private TextView tvName, number;
+        private LinearLayout root;
 
         Level_1_ViewHolder(View itemView, OnMultiLevelItemClickListener listener) {
             super(itemView, TYPE_LEVEL_1, listener);
-            tvLevel_1_Name = (TextView) itemView.findViewById(R.id.city_name);
+            tvName = (TextView) itemView.findViewById(R.id.name);
+            number = (TextView) itemView.findViewById(R.id.number);
+            root = (LinearLayout) itemView.findViewById(R.id.root);
         }
 
         @Override
         public void bindViewHolder(RootNode.ChildNode1 data) {
-            tvLevel_1_Name.setText(data.getName());
+            tvName.setText(data.getName());
+            if (data.getAttributes() != null) {
+                number.setText("" + data.getAttributes().getCars());
+            }
+            if (data.getChildren() == null || data.getChildren().size() == 0) {
+                root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(view.getContext(), CarListActivity.class);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
@@ -154,16 +170,32 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
     private static class Level_2_ViewHolder extends MultiLevelViewHolder<RootNode.ChildNode2> {
 
-        private TextView tvStreetName;
+        private TextView tvName, number;
+        private LinearLayout root;
 
         Level_2_ViewHolder(View itemView, OnMultiLevelItemClickListener listener) {
             super(itemView, TYPE_LEVEL_2, listener);
-            tvStreetName = (TextView) itemView.findViewById(R.id.area_name);
+            tvName = (TextView) itemView.findViewById(R.id.name);
+            number = (TextView) itemView.findViewById(R.id.number);
+            root = (LinearLayout) itemView.findViewById(R.id.root);
         }
 
         @Override
         public void bindViewHolder(RootNode.ChildNode2 data) {
-            tvStreetName.setText(data.getName());
+            tvName.setText(data.getName());
+            if (data.getAttributes() != null) {
+                number.setText("" + data.getAttributes().getCars());
+            }
+            if (data.getChildren() == null || data.getChildren().size() == 0) {
+                root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(view.getContext(), CarListActivity.class);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
@@ -180,16 +212,32 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
     private static class Level_3_ViewHolder extends MultiLevelViewHolder<RootNode.ChildNode3> {
 
-        private TextView tvStreetName;
+        private TextView tvName, number;
+        private LinearLayout root;
 
         Level_3_ViewHolder(View itemView, OnMultiLevelItemClickListener listener) {
             super(itemView, TYPE_LEVEL_3, listener);
-            tvStreetName = (TextView) itemView.findViewById(R.id.street_name);
+            tvName = (TextView) itemView.findViewById(R.id.street_name);
+            number = (TextView) itemView.findViewById(R.id.number);
+            root = (LinearLayout) itemView.findViewById(R.id.root);
         }
 
         @Override
         public void bindViewHolder(RootNode.ChildNode3 data) {
-            tvStreetName.setText(data.getName());
+            tvName.setText(data.getName());
+            if (data.getAttributes() != null) {
+                number.setText("" + data.getAttributes().getCars());
+            }
+            if (data.getChildren() == null || data.getChildren().size() == 0) {
+                root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setClass(view.getContext(), CarListActivity.class);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
@@ -220,7 +268,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
         public void bindViewHolder(RootNode.ChildNode4 data) {
             tvName.setText(data.getName());
             if (data.getAttributes() != null) {
-                number.setText("数量:" + data.getAttributes().getCars());
+                number.setText("" + data.getAttributes().getCars());
             }
             if (data.getChildren() == null || data.getChildren().size() == 0) {
                 root.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +282,4 @@ public class MyTestAdapter extends MultiLevelAdapter {
             }
         }
     }
-
-
 }

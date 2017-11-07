@@ -5,6 +5,8 @@
     android:orientation="horizontal">
 
     <TextView
+        android:gravity="center"
+        android:text="名字"
         android:id="@+id/street_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -21,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:paddingRight="20dp"
-        android:text="数量" />
+        android:layout_marginRight="20dp"
+        android:text="" />
 
 
 </LinearLayout>

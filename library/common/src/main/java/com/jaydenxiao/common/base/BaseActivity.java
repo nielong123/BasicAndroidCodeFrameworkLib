@@ -1,12 +1,15 @@
 package com.jaydenxiao.common.base;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Window;
 
 import com.jaydenxiao.common.BuildConfig;
@@ -65,6 +68,8 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public E mModel;
     public Context mContext;
     public RxManager mRxManager;
+
+    private boolean mResideMenuIsClosed = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -286,5 +291,33 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         mRxManager.clear();
         ButterKnife.unbind(this);
         AppManager.getAppManager().finishActivity(this);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mResideMenuIsClosed) {
+                QuitHintDialog();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void QuitHintDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage("是否退出應用?")
+                .setTitle("娄底驾培")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).create().show();
     }
 }

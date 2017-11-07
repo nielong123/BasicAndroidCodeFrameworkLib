@@ -1,15 +1,17 @@
 package mybasicandroidcodelib.nl.org.codelib.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.alibaba.fastjson.JSON;
-import com.aspsine.irecyclerview.IRecyclerView;
 import com.aspsine.irecyclerview.OnRefreshListener;
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
@@ -26,6 +28,7 @@ import mybasicandroidcodelib.nl.org.codelib.bean.CompanyBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.my.MyTestAdapter;
 import mybasicandroidcodelib.nl.org.codelib.bean.my.RootNode;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
+import mybasicandroidcodelib.nl.org.codelib.ui.login.LoginActivity;
 import mybasicandroidcodelib.nl.org.codelib.widget.Area;
 import mybasicandroidcodelib.nl.org.codelib.widget.Cities;
 import mybasicandroidcodelib.nl.org.codelib.widget.City;
@@ -39,7 +42,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
     @Bind(R.id.title)
     NormalTitleBar normalTitleBar;
     @Bind(R.id.irecyclerview)
-    IRecyclerView recyclerview;
+    RecyclerView recyclerview;
     @Bind(R.id.button)
     Button button;
 
@@ -73,6 +76,27 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
         normalTitleBar.setTitleText("车 辆 列 表");
         normalTitleBar.setTvLeftVisiable(false);
         normalTitleBar.setBackGroundColor(R.color.colorPrimary);
+        normalTitleBar.setRightImagSrc(R.mipmap.kpi_icon_detail);
+        normalTitleBar.setOnRightImagListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(CompanyActivity.this)
+                        .setMessage("是否清除已保存的账号密码?")
+                        .setTitle("娄底驾培")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(LoginActivity.class);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).create().show();
+            }
+        });
     }
 
     @Override

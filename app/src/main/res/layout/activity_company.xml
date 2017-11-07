@@ -8,7 +8,9 @@
     <com.jaydenxiao.common.commonwidget.NormalTitleBar
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+    </com.jaydenxiao.common.commonwidget.NormalTitleBar>
 
     <View
         android:layout_width="match_parent"
@@ -28,14 +30,10 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.aspsine.irecyclerview.IRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/irecyclerview"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:loadMoreEnabled="false"
-            app:refreshEnabled="false"
-            app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
