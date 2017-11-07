@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aspsine.irecyclerview.IRecyclerView;
 import com.aspsine.irecyclerview.OnRefreshListener;
@@ -18,6 +19,7 @@ import com.aspsine.irecyclerview.widget.LoadMoreFooterView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jaydenxiao.common.base.BaseActivity;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 
 import org.ksoap2.SoapEnvelope;
@@ -50,29 +52,40 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
     CommonRecycleViewAdapter<CarListBean.DataBean> adapter;
     String id = "";
 
+    private static final int ERROR = 0;
+    private static final int RELOAD = 1;
+
 
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            CarListBean bean = (CarListBean) msg.getData().getSerializable("list");
-            List<CarListBean.DataBean> dataList = bean.getData();
-
-            if (adapter.getPageBean().isRefresh()) {
-                recyclerview.setRefreshing(false);
-                if (dataList != null) {
-                    adapter.replaceAll(dataList);
-                } else {
-                    adapter.clear();
-                }
-            } else {
-                if (dataList.size() > 0) {
-                    recyclerview.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
-                    adapter.addAll(dataList);
-                } else {
-                    recyclerview.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
-                }
+            switch (msg.what) {
+                case ERROR:
+                    ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
+                    break;
+                case RELOAD:
+                    CarListBean bean = (CarListBean) msg.getData().getSerializable("list");
+                    List<CarListBean.DataBean> dataList = bean.getData();
+                    if (adapter.getPageBean().isRefresh()) {
+                        recyclerview.setRefreshing(false);
+                        if (dataList != null) {
+                            adapter.replaceAll(dataList);
+                        } else {
+                            adapter.clear();
+                        }
+                    } else {
+                        if (dataList.size() > 0) {
+                            recyclerview.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
+                            adapter.addAll(dataList);
+                        } else {
+                            recyclerview.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
+                        }
+                    }
+                    break;
             }
+
+
         }
     };
 
@@ -174,14 +187,21 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                 }
                 CarListBean bean = null;
                 if (!TextUtils.isEmpty(result)) {
-                    Gson gson = new GsonBuilder().create();
-                    bean = gson.fromJson(result, CarListBean.class);
+                    if (!result.contains("failed to connect")) {
+                        Gson gson = new GsonBuilder().create();
+                        bean = gson.fromJson(result, CarListBean.class);
+                        Message msg = new Message();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("list", bean);
+                        msg.setData(bundle);
+                        msg.what = RELOAD;
+                        handler.sendMessage(msg);
+                    } else {
+                        handler.sendEmptyMessage(ERROR);
+                    }
+                } else {
+                    handler.sendEmptyMessage(ERROR);
                 }
-                Message msg = new Message();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("list", bean);
-                msg.setData(bundle);
-                handler.sendMessage(msg);
             }
         }).start();
     }

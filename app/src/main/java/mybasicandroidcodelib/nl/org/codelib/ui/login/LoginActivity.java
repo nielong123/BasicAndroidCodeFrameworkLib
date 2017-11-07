@@ -190,10 +190,10 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         // Store values at the time of the login attempt.
 //        String email = mEmailView.getText().toString();
 //        String password = mPasswordView.getText().toString();
-//        String email = "wh";
-//        String password = "ldjp123456";
-        String email = "ltjx";
-        String password = "123456";
+        String email = "wh";
+        String password = "ldjp123456";
+//        String email = "ltjx";
+//        String password = "123456";
 
         boolean cancel = false;
         View focusView = null;
@@ -204,8 +204,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             focusView = mPasswordView;
             cancel = true;
         }
-
-        // Check for a valid email address.
+//
+//        // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
@@ -400,11 +400,15 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         }
         LoginBean bean = null;
         if (!TextUtils.isEmpty(result)) {
-            Gson gson = new GsonBuilder().create();
-            bean = gson.fromJson(result, LoginBean.class);
-            Config.loginBean = bean;
+            if (!result.contains("failed to connect")) {
+                Gson gson = new GsonBuilder().create();
+                bean = gson.fromJson(result, LoginBean.class);
+                Config.loginBean = bean;
+            } else {
+                return false;
+            }
         }
-        return bean.getCode() == 1 ? true : false;
+        return bean.getCode() == 1;
     }
 }
 

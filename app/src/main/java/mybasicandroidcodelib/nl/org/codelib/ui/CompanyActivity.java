@@ -10,11 +10,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.aspsine.irecyclerview.OnRefreshListener;
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.commonutils.PreferenceUtils;
+import com.jaydenxiao.common.commonutils.ToastUitl;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 
 import org.ksoap2.SoapEnvelope;
@@ -48,6 +50,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
     Button button;
 
     private final static int RELOAD = 0;
+    private final static int ERROR = 1;
 
     CompanyBean bean;
 
@@ -55,9 +58,16 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            MyTestAdapter myAdapter = new MyTestAdapter(CompanyActivity.this, createDemoData(bean));
-            recyclerview.setLayoutManager(new LinearLayoutManager(CompanyActivity.this));
-            recyclerview.setAdapter(myAdapter);
+            switch (msg.what) {
+                case RELOAD:
+                    MyTestAdapter myAdapter = new MyTestAdapter(CompanyActivity.this, createDemoData(bean));
+                    recyclerview.setLayoutManager(new LinearLayoutManager(CompanyActivity.this));
+                    recyclerview.setAdapter(myAdapter);
+                    break;
+                case ERROR:
+                    ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
+                    break;
+            }
             return;
         }
     };
@@ -99,6 +109,12 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                         }).create().show();
             }
         });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onRefresh();
+            }
+        });
     }
 
     @Override
@@ -136,11 +152,18 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                 }
                 Log.e(TAG, result);
                 if (!TextUtils.isEmpty(result)) {
-//                    bean = new Gson().fromJson(result, CompanyBean.class);
-                    bean = JSON.parseObject(result, CompanyBean.class);
-                    Message msg = new Message();
-                    msg.what = RELOAD;
-                    handler.sendMessage(msg);
+                    Log.e(TAG, "result = " + result);
+                    if (!result.contains("failed to connect")) {
+                        //                    bean = new Gson().fromJson(result, CompanyBean.class);
+                        bean = JSON.parseObject(result, CompanyBean.class);
+                        Message msg = new Message();
+                        msg.what = RELOAD;
+                        handler.sendMessage(msg);
+                    } else {
+                        handler.sendEmptyMessage(ERROR);
+                    }
+                } else {
+                    handler.sendEmptyMessage(ERROR);
                 }
             }
         }).start();
@@ -241,7 +264,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
 
     @Override
     public void onRefresh() {
-
+        getCompanyList();
     }
 
 }

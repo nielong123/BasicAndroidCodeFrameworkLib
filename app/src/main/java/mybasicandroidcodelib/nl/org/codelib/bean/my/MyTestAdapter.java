@@ -265,7 +265,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
         }
 
         @Override
-        public void bindViewHolder(RootNode.ChildNode4 data) {
+        public void bindViewHolder(final RootNode.ChildNode4 data) {
             tvName.setText(data.getName());
             if (data.getAttributes() != null) {
                 number.setText("" + data.getAttributes().getCars());
@@ -275,6 +275,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
+                        intent.putExtra("",data.getStuId());
                         intent.setClass(view.getContext(), CarListActivity.class);
                         view.getContext().startActivity(intent);
                     }

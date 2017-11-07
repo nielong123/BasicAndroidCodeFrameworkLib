@@ -111,7 +111,7 @@ public class MapActivity extends BaseActivity {
 
     void showMark() {
         MarkerOptions markerOptions = new MarkerOptions().anchor(0.5f, 0.5f).setFlat(false)
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.car_g))
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.che1510053038))
                 .position(latLng)
                 .zIndex(12)
                 .title("-- 教练车 --\n " + dataBean.getCarno());
