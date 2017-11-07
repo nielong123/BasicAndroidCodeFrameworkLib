@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jaydenxiao.common.base.BaseActivity;
+import com.jaydenxiao.common.commonutils.PreferenceUtils;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -121,7 +122,11 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 
     @Override
     protected void initData() {
-
+        Config.loginBean = PreferenceUtils.getInstance().getSettingObject("login", LoginBean.class);
+        if (Config.loginBean != null) {
+            startActivity(CompanyActivity.class);
+            finish();
+        }
     }
 
     private void populateAutoComplete() {
@@ -337,8 +342,11 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         @Override
         protected Boolean doInBackground(String... params) {
             // TODO: attempt authentication against a network service.
-
-            return getLogin(params[0], params[1]);
+            if (getLogin(params[0], params[1])) {
+                PreferenceUtils.getInstance().setSettingObject("login", Config.loginBean);
+                return true;
+            } else
+                return false;
         }
 
         @Override

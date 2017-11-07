@@ -2,6 +2,7 @@ package com.jaydenxiao.common.commonutils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
@@ -9,7 +10,7 @@ import com.google.gson.Gson;
  * Nl 2016-8-17
  */
 public class PreferenceUtils {
-    private static final String SettingFileName = "base_config";
+    private static final String SettingFileName = "base_config123";
     private SharedPreferences settings;
     private static PreferenceUtils mInstance;
 
@@ -88,7 +89,7 @@ public class PreferenceUtils {
 
     public <T> T getSettingObject(String key, Class<T> type) {
         String str = getSettingStr(key, "");
-        if (!"".equals(str)) {
+        if (!TextUtils.isEmpty(str)) {
             Gson gson = new Gson();
             return gson.fromJson(str, type);
         }

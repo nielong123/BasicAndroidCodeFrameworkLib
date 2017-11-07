@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.alibaba.fastjson.JSON;
 import com.aspsine.irecyclerview.OnRefreshListener;
 import com.jaydenxiao.common.base.BaseActivity;
+import com.jaydenxiao.common.commonutils.PreferenceUtils;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 
 import org.ksoap2.SoapEnvelope;
@@ -86,6 +87,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                PreferenceUtils.getInstance().removeKey("login");
                                 startActivity(LoginActivity.class);
                                 finish();
                             }
