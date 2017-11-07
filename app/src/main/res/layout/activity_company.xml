@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,33 +10,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/alpha_20_white" />
 
-    <SearchView
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:queryHint="请输入车牌号" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:onClick="onSearch"
+        android:onClick="onSearch1"
         android:padding="4dp"
-        android:text="搜    索" />
+        android:text="刷    新" />
 
-    <com.aspsine.irecyclerview.IRecyclerView
-        android:id="@+id/irecyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:loadMoreEnabled="true"
-        app:refreshEnabled="true"
-        app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header" />
+        android:orientation="horizontal">
+
+        <com.aspsine.irecyclerview.IRecyclerView
+            android:id="@+id/irecyclerview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:loadMoreEnabled="false"
+            app:refreshEnabled="false"
+            app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -39,7 +39,7 @@ import mybasicandroidcodelib.nl.org.codelib.ui.detail.DetailInfotActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
 
-public class CarListActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
+public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
     @Bind(R.id.title)
     NormalTitleBar normalTitleBar;
@@ -118,7 +118,6 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener, 
         LinearLayoutManager lineManager = new LinearLayoutManager(this);
         lineManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerview.setLayoutManager(lineManager);
-        recyclerview.setOnLoadMoreListener(this);
         recyclerview.setOnRefreshListener(this);
     }
 
@@ -131,11 +130,6 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener, 
     @Override
     public void onRefresh() {
         getCarList(id);
-    }
-
-    @Override
-    public void onLoadMore(View loadMoreView) {
-
     }
 
 

@@ -47,6 +47,7 @@ import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.LoginBean;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
 import mybasicandroidcodelib.nl.org.codelib.ui.CarListActivity;
+import mybasicandroidcodelib.nl.org.codelib.ui.CompanyActivity;
 import mybasicandroidcodelib.nl.org.codelib.ui.main.MainActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
@@ -186,6 +187,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
 //        String password = mPasswordView.getText().toString();
         String email = "wh";
         String password = "ldjp123456";
+//        String email = "ltjx";
+//        String password = "123456";
 
         boolean cancel = false;
         View focusView = null;
@@ -344,7 +347,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             showProgress(false);
 
             if (success) {
-                startActivity(CarListActivity.class);
+                startActivity(CompanyActivity.class);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
