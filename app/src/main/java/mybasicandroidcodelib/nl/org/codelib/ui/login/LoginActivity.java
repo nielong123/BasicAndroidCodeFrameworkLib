@@ -190,10 +190,10 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         // Store values at the time of the login attempt.
 //        String email = mEmailView.getText().toString();
 //        String password = mPasswordView.getText().toString();
-        String email = "wh";
-        String password = "ldjp123456";
-//        String email = "ltjx";
-//        String password = "123456";
+//        String email = "wh";
+//        String password = "ldjp123456";
+        String email = "ltjx";
+        String password = "123456";
 
         boolean cancel = false;
         View focusView = null;
