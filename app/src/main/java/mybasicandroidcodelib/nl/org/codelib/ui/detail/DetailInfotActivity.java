@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
+import mybasicandroidcodelib.nl.org.codelib.bean.CarDetailBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
 import mybasicandroidcodelib.nl.org.codelib.ui.MapActivity;
@@ -73,30 +74,32 @@ public class DetailInfotActivity extends BaseActivity {
                     ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
                     break;
                 case RELOAD:
-//                    carno.append(data.getText() == null ? "无车牌" : data.getText());
-//                    carsstate.append(data.getCarstatus() == null ? "无" : data.getCarsstate());
-//                    location.append(data.getLocation() == null ? "未定位" : data.getLocation());
-//                    coachname.append(data.getCoachname() == null ? "未签到" : data.getCoachname());
-//                    stuname.append(data.getStuname() == null ? "无" : data.getStuname());
-//                    gpstime.setText(data.getGpstime());
-//                    carno.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            if (TextUtils.isEmpty(data.getLatitudenew()) || TextUtils.isEmpty(data.getLocation())) {
-//                                AlertView.Builder builder = new AlertView.Builder();
-//                                builder.setCancelText("确  认");
-//                                builder.setContext(DetailInfotActivity.this);
-//                                builder.setStyle(AlertView.Style.Alert);
-//                                builder.setTitle("该车辆没有定位信息");
-//                                AlertView alertView = new AlertView(builder);
-//                                alertView.show();
-//                            } else {
-//                                Bundle bundle = new Bundle();
-//                                bundle.putSerializable("data", data);
-//                                startActivity(MapActivity.class, bundle);
-//                            }
-//                        }
-//                    });
+                    CarDetailBean detailBean = (CarDetailBean) msg.getData().getSerializable("detail");
+                    final CarDetailBean.DataBean data = detailBean.getData().get(0);
+                    carno.append(detailBean.getData().get(0).getCarno() == null ? "无车牌" : data.getCarno());
+                    carsstate.append(data.getCarsstate() == null ? "无" : data.getCarsstate());
+                    location.append(data.getLocation() == null ? "未定位" : data.getLocation());
+                    coachname.append(data.getCoachname() == null ? "未签到" : data.getCoachname());
+                    stuname.append(data.getStuname() == null ? "无" : data.getStuname());
+                    gpstime.setText(data.getGpstime());
+                    carno.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (TextUtils.isEmpty(data.getLatitudenew()) || TextUtils.isEmpty(data.getLocation())) {
+                                AlertView.Builder builder = new AlertView.Builder();
+                                builder.setCancelText("确  认");
+                                builder.setContext(DetailInfotActivity.this);
+                                builder.setStyle(AlertView.Style.Alert);
+                                builder.setTitle("该车辆没有定位信息");
+                                AlertView alertView = new AlertView(builder);
+                                alertView.show();
+                            } else {
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("data", data);
+                                startActivity(MapActivity.class, bundle);
+                            }
+                        }
+                    });
                     break;
             }
 
@@ -161,15 +164,15 @@ public class DetailInfotActivity extends BaseActivity {
                 } catch (Exception e) {
                     result = e.getMessage();
                 }
-                CarListBean bean = null;
+                CarDetailBean bean = null;
                 if (!TextUtils.isEmpty(result)) {
                     Log.e(TAG, result);
                     if (!result.contains("failed to connect")) {
                         Gson gson = new GsonBuilder().create();
-                        bean = gson.fromJson(result, CarListBean.class);
+                        bean = gson.fromJson(result, CarDetailBean.class);
                         Message msg = new Message();
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("list", bean);
+                        bundle.putSerializable("detail", bean);
                         msg.setData(bundle);
                         msg.what = RELOAD;
                         handler.sendMessage(msg);

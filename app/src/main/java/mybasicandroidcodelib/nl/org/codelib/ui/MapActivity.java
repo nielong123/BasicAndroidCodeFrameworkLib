@@ -16,6 +16,7 @@ import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 
 import butterknife.Bind;
+import mybasicandroidcodelib.nl.org.codelib.bean.CarDetailBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
@@ -29,7 +30,7 @@ public class MapActivity extends BaseActivity {
 
     private AMap aMap;
     LatLng latLng;
-    CarListBean.DataBean dataBean;
+    CarDetailBean.DataBean dataBean;
 
     /**
      * 方法必须重写
@@ -92,9 +93,9 @@ public class MapActivity extends BaseActivity {
     @Override
     protected void initData() {
         Bundle bundle = getIntent().getExtras();
-        dataBean = (CarListBean.DataBean) bundle.getSerializable("data");
+        dataBean = (CarDetailBean.DataBean) bundle.getSerializable("data");
 //        latLng = new LatLng(39.968041, 116.373798);
-//        latLng = new LatLng(Double.valueOf(dataBean.getLatitudenew()), Double.valueOf(dataBean.getLongitudenew()));
+        latLng = new LatLng(Double.valueOf(dataBean.getLatitudenew()), Double.valueOf(dataBean.getLongitudenew()));
     }
 
     private void initMapView() {
@@ -110,12 +111,12 @@ public class MapActivity extends BaseActivity {
     }
 
     void showMark() {
-//        MarkerOptions markerOptions = new MarkerOptions().anchor(0.5f, 0.5f).setFlat(false)
-//                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.che1510053038))
-//                .position(latLng)
-//                .zIndex(12)
-//                .title("-- 教练车 --\n " + dataBean.getCarno());
-//        Marker moveMarker = aMap.addMarker(markerOptions);
-//        moveMarker.showInfoWindow();
+        MarkerOptions markerOptions = new MarkerOptions().anchor(0.5f, 0.5f).setFlat(false)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.che1510053038))
+                .position(latLng)
+                .zIndex(12)
+                .title("---- 教练车 ----\n " + dataBean.getCarno());
+        Marker moveMarker = aMap.addMarker(markerOptions);
+        moveMarker.showInfoWindow();
     }
 }

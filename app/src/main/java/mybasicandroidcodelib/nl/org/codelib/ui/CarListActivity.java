@@ -29,6 +29,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -45,6 +46,7 @@ import static mybasicandroidcodelib.nl.org.codelib.config.Config.encryption;
 public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
     private static final String TAG = CarListActivity.class.getName();
+
     @Bind(R.id.title)
     NormalTitleBar normalTitleBar;
     @Bind(R.id.irecyclerview)
@@ -55,16 +57,15 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
     Button button;
 
     CommonRecycleViewAdapter<CarListBean.DataBean> adapter;
-    RootNode.ChildNode1 childNode1;
-    RootNode.ChildNode2 childNode2;
-    RootNode.ChildNode3 childNode3;
-    RootNode.ChildNode4 childNode4;
+
+    List<CarListBean.DataBean> originalList;
     String companyId = "";
-    String carNum = "";
     String title;
+    String carNum;              //车牌号列表过滤的关键字
 
     private static final int ERROR = 0;
     private static final int RELOAD = 1;
+    private static final int QUERY = 2;
 
 
     Handler handler = new Handler() {
@@ -76,27 +77,33 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                     ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
                     break;
                 case RELOAD:
-                    CarListBean bean = (CarListBean) msg.getData().getSerializable("list");
-                    List<CarListBean.DataBean> dataList = bean.getData();
+//                    CarListBean bean = (CarListBean) msg.getData().getSerializable("list");
+//                    List<CarListBean.DataBean> dataList = bean.getData();
                     if (adapter.getPageBean().isRefresh()) {
                         recyclerview.setRefreshing(false);
-                        if (dataList != null) {
-                            adapter.replaceAll(dataList);
+                        if (originalList != null) {
+                            adapter.replaceAll(originalList);
                         } else {
                             adapter.clear();
                         }
                     } else {
-                        if (dataList.size() > 0) {
+                        if (originalList.size() > 0) {
                             recyclerview.setLoadMoreStatus(LoadMoreFooterView.Status.GONE);
-                            adapter.addAll(dataList);
+                            adapter.addAll(originalList);
                         } else {
                             recyclerview.setLoadMoreStatus(LoadMoreFooterView.Status.THE_END);
                         }
                     }
                     break;
+                case QUERY:
+                    recyclerview.setRefreshing(false);
+                    if (queryList(carNum) != null) {
+                        adapter.replaceAll(queryList(carNum));
+                    } else {
+                        adapter.clear();
+                    }
+                    break;
             }
-
-
         }
     };
 
@@ -127,12 +134,12 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
             @Override
             public void convert(ViewHolderHelper helper, final CarListBean.DataBean bean) {
                 ((TextView) helper.getView(R.id.id)).setText("车牌号:" + (bean.getText() == null ? "无车牌号" : bean.getText()));                   //车牌
-                ((TextView) helper.getView(R.id.clock_state)).setText("状态:" + (bean.getCarstatus() == null ? "空闲" : "培训中"));      //签到状态
+                ((TextView) helper.getView(R.id.clock_state)).setText("状态:" + (bean.getCarstatus() == null ? "未知" : bean.getCarstatus()));      //签到状态
                 helper.getView(R.id.root).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("carId", bean.getId());
+                        bundle.putSerializable("carId", bean.getText());
                         startActivity(DetailInfotActivity.class, bundle);
                     }
                 });
@@ -149,22 +156,43 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
     protected void initData() {
         title = getIntent().getStringExtra("title");
         companyId = getIntent().getStringExtra("companyId");
+        if (!TextUtils.isEmpty(companyId)) {
+            getCarList(companyId);
+        }
     }
 
 
     @Override
     public void onRefresh() {
-        getCarList(carNum);
+        getCarList(companyId);
     }
 
 
     public void onSearch(View view) {
         carNum = search.getQuery().toString().trim();
-        getCarList(carNum);
+        if (!TextUtils.isEmpty(carNum)) {
+            handler.sendEmptyMessage(QUERY);
+        } else {
+            handler.sendEmptyMessage(RELOAD);
+        }
+    }
+
+    private List<CarListBean.DataBean> queryList(String carNum) {
+        if (originalList != null) {
+            List<CarListBean.DataBean> res = new ArrayList<>();
+            for (CarListBean.DataBean bean : originalList) {
+                if (bean.getText().contains(carNum)) {
+                    res.add(bean);
+                }
+            }
+            return res;
+        } else {
+            return null;
+        }
     }
 
 
-    private void getCarList(final String id) {
+    private void getCarList(final String companyId) {
         new Thread(new Runnable() {
 
             @Override
@@ -191,7 +219,6 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                         SoapPrimitive response = (SoapPrimitive) envelope.getResponse();
                         result = response.toString();//这里获得了webService的返回值
                     }
-
                 } catch (Exception e) {
                     result = e.getMessage();
                 }
@@ -201,12 +228,8 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                     if (!result.contains("failed to connect")) {
                         Gson gson = new GsonBuilder().create();
                         bean = gson.fromJson(result, CarListBean.class);
-                        Message msg = new Message();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("list", bean);
-                        msg.setData(bundle);
-                        msg.what = RELOAD;
-                        handler.sendMessage(msg);
+                        originalList = bean.getData();
+                        handler.sendEmptyMessage(RELOAD);
                     } else {
                         handler.sendEmptyMessage(ERROR);
                     }
@@ -216,6 +239,4 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
             }
         }).start();
     }
-
-
 }
