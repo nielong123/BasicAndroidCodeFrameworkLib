@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
@@ -33,13 +34,17 @@ import java.util.List;
 import butterknife.Bind;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
+import mybasicandroidcodelib.nl.org.codelib.bean.my.RootNode;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
 import mybasicandroidcodelib.nl.org.codelib.ui.detail.DetailInfotActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
+import static mybasicandroidcodelib.nl.org.codelib.config.Config.encryption;
+
 
 public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
+    private static final String TAG = CarListActivity.class.getName();
     @Bind(R.id.title)
     NormalTitleBar normalTitleBar;
     @Bind(R.id.irecyclerview)
@@ -50,7 +55,13 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
     Button button;
 
     CommonRecycleViewAdapter<CarListBean.DataBean> adapter;
-    String id = "";
+    RootNode.ChildNode1 childNode1;
+    RootNode.ChildNode2 childNode2;
+    RootNode.ChildNode3 childNode3;
+    RootNode.ChildNode4 childNode4;
+    String companyId = "";
+    String carNum = "";
+    String title;
 
     private static final int ERROR = 0;
     private static final int RELOAD = 1;
@@ -102,7 +113,7 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
     @Override
     public void initView() {
-        normalTitleBar.setTitleText("车 辆 列 表");
+        normalTitleBar.setTitleText(title);
         normalTitleBar.setTvLeftVisiable(true);
         normalTitleBar.setBackGroundColor(R.color.colorPrimary);
         normalTitleBar.setOnBackListener(new View.OnClickListener() {
@@ -115,15 +126,13 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
             @Override
             public void convert(ViewHolderHelper helper, final CarListBean.DataBean bean) {
-                ((TextView) helper.getView(R.id.id)).setText("车牌号:" + (bean.getCarno() == null ? "无车牌号" : bean.getCarno()));                   //车牌
-                ((TextView) helper.getView(R.id.clock_state)).setText("状态:" + (bean.getCarsstate() == null ? "未签到" : bean.getCarsstate()));      //签到状态
-                ((TextView) helper.getView(R.id.student)).setText("学员:" + (bean.getStuname() == null ? "无" : bean.getStuname()));      //签到状态
-                ((TextView) helper.getView(R.id.coach)).setText("教练:" + (bean.getCoachname() == null ? "未签到" : bean.getCoachname()));      //签到状态
+                ((TextView) helper.getView(R.id.id)).setText("车牌号:" + (bean.getText() == null ? "无车牌号" : bean.getText()));                   //车牌
+                ((TextView) helper.getView(R.id.clock_state)).setText("状态:" + (bean.getCarstatus() == null ? "空闲" : "培训中"));      //签到状态
                 helper.getView(R.id.root).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("data", bean);
+                        bundle.putSerializable("carId", bean.getId());
                         startActivity(DetailInfotActivity.class, bundle);
                     }
                 });
@@ -138,19 +147,20 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
     @Override
     protected void initData() {
-
+        title = getIntent().getStringExtra("title");
+        companyId = getIntent().getStringExtra("companyId");
     }
 
 
     @Override
     public void onRefresh() {
-        getCarList(id);
+        getCarList(carNum);
     }
 
 
     public void onSearch(View view) {
-        id = search.getQuery().toString().trim();
-        getCarList(id);
+        carNum = search.getQuery().toString().trim();
+        getCarList(carNum);
     }
 
 
@@ -164,11 +174,11 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                     SoapObject request = new SoapObject(ServiceConfig.nameSpace, ServiceConfig.methodName);//NameSpace
                     //webService方法中的参数，这个根据你的webservice来，可以没有。
                     //但请注意，参数名称和参数类型客户端和服务端一定要一致，否则将可能获取不到你想要的
-                    request.addProperty("jkxlh", "21EC2020-3AEA-1069-A2DD-08002B30309D");
-                    request.addProperty("jkid", "LdGetCar");
-                    request.addProperty("CarNo", id);
+                    request.addProperty("jkxlh", encryption);
+                    request.addProperty("jkid", "GetTreeList");
                     request.addProperty("Deid", Config.loginBean.getData().get(0).getDeid() + "");
                     request.addProperty("UserType", Config.loginBean.getData().get(0).getUsertype() + "");
+                    request.addProperty("NodeId", companyId);
 
                     SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                             SoapEnvelope.VER11);
@@ -187,6 +197,7 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                 }
                 CarListBean bean = null;
                 if (!TextUtils.isEmpty(result)) {
+                    Log.e(TAG, result);
                     if (!result.contains("failed to connect")) {
                         Gson gson = new GsonBuilder().create();
                         bean = gson.fromJson(result, CarListBean.class);

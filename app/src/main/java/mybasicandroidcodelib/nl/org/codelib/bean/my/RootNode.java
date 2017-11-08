@@ -25,7 +25,7 @@ public class RootNode extends BaseParentNode {
         }
     }
 
-    public static class ChildNode1 extends BaseParentNode {
+    public static class ChildNode1 extends BaseParentNode implements Serializable{
         private String id;
         private int key;
         private int parentid;
@@ -96,7 +96,7 @@ public class RootNode extends BaseParentNode {
 
     }
 
-    public static class ChildNode2 extends BaseParentNode {
+    public static class ChildNode2 extends BaseParentNode implements Serializable{
         private String id;
         private int key;
         private int parentid;
@@ -167,7 +167,7 @@ public class RootNode extends BaseParentNode {
 
     }
 
-    public static class ChildNode3 extends BaseParentNode {
+    public static class ChildNode3 extends BaseParentNode implements Serializable{
         private String id;
         private int key;
         private int parentid;
@@ -238,7 +238,7 @@ public class RootNode extends BaseParentNode {
 
     }
 
-    public static class ChildNode4 extends BaseParentNode {
+    public static class ChildNode4 extends BaseParentNode implements Serializable{
         private String id;
         private int key;
         private int parentid;

@@ -10,6 +10,9 @@ import mybasicandroidcodelib.nl.org.codelib.bean.LoginBean;
 public class Config {
 
     public static final String BuglyID = "b3e3b5ac85";
+    public static final String encryption = "21EC2020-3AEA-1069-A2DD-08002B30309D";
+
+
 
     public static LoginBean loginBean;
 

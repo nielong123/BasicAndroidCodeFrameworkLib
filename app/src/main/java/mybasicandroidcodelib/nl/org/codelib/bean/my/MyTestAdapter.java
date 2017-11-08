@@ -139,7 +139,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
         }
 
         @Override
-        public void bindViewHolder(RootNode.ChildNode1 data) {
+        public void bindViewHolder(final RootNode.ChildNode1 data) {
             tvName.setText(data.getName());
             if (data.getAttributes() != null) {
                 number.setText("" + data.getAttributes().getCars());
@@ -149,11 +149,23 @@ public class MyTestAdapter extends MultiLevelAdapter {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
+                        intent.putExtra("title", data.getText());
+                        intent.putExtra("companyId", data.getId());
                         intent.setClass(view.getContext(), CarListActivity.class);
                         view.getContext().startActivity(intent);
                     }
                 });
             }
+//            if (data.getChildren() == null || data.getChildren().size() == 0) {
+//                root.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent = new Intent();
+//                        intent.setClass(view.getContext(), CarListActivity.class);
+//                        view.getContext().startActivity(intent);
+//                    }
+//                });
+//            }
         }
     }
 
@@ -181,7 +193,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
         }
 
         @Override
-        public void bindViewHolder(RootNode.ChildNode2 data) {
+        public void bindViewHolder(final RootNode.ChildNode2 data) {
             tvName.setText(data.getName());
             if (data.getAttributes() != null) {
                 number.setText("" + data.getAttributes().getCars());
@@ -191,11 +203,23 @@ public class MyTestAdapter extends MultiLevelAdapter {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
+                        intent.putExtra("title", data.getText());
+                        intent.putExtra("companyId", data.getId());
                         intent.setClass(view.getContext(), CarListActivity.class);
                         view.getContext().startActivity(intent);
                     }
                 });
             }
+//            if (data.getChildren() == null || data.getChildren().size() == 0) {
+//                root.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent = new Intent();
+//                        intent.setClass(view.getContext(), CarListActivity.class);
+//                        view.getContext().startActivity(intent);
+//                    }
+//                });
+//            }
         }
     }
 
@@ -223,7 +247,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
         }
 
         @Override
-        public void bindViewHolder(RootNode.ChildNode3 data) {
+        public void bindViewHolder(final RootNode.ChildNode3 data) {
             tvName.setText(data.getName());
             if (data.getAttributes() != null) {
                 number.setText("" + data.getAttributes().getCars());
@@ -233,11 +257,24 @@ public class MyTestAdapter extends MultiLevelAdapter {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
+                        intent.putExtra("title", data.getText());
+                        intent.putExtra("companyId", data.getId());
                         intent.setClass(view.getContext(), CarListActivity.class);
                         view.getContext().startActivity(intent);
                     }
                 });
             }
+//            if (data.getChildren() == null || data.getChildren().size() == 0) {
+//                root.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent = new Intent();
+//                        intent.setClass(view.getContext(), CarListActivity.class);
+//                        view.getContext().startActivity(intent);
+//                    }
+//                });
+//
+//            }
         }
     }
 
@@ -275,7 +312,8 @@ public class MyTestAdapter extends MultiLevelAdapter {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent();
-                        intent.putExtra("",data.getStuId());
+                        intent.putExtra("title", data.getText());
+                        intent.putExtra("companyId", data.getId());
                         intent.setClass(view.getContext(), CarListActivity.class);
                         view.getContext().startActivity(intent);
                     }

@@ -53,6 +53,7 @@ import mybasicandroidcodelib.nl.org.codelib.ui.main.MainActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static mybasicandroidcodelib.nl.org.codelib.config.Config.encryption;
 
 /**
  * A login screen that offers login via email/password.
@@ -377,7 +378,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             SoapObject request = new SoapObject(ServiceConfig.nameSpace, ServiceConfig.methodName);//NameSpace
             //webService方法中的参数，这个根据你的webservice来，可以没有。
             //但请注意，参数名称和参数类型客户端和服务端一定要一致，否则将可能获取不到你想要的
-            request.addProperty("jkxlh", "21EC2020-3AEA-1069-A2DD-08002B30309D");
+            request.addProperty("jkxlh", encryption);
             request.addProperty("jkid", "LdUserLogin");
             request.addProperty("CarNo", "");
             request.addProperty("LoginName", loginName);

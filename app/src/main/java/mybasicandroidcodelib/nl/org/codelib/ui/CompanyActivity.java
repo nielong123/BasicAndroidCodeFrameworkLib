@@ -38,6 +38,8 @@ import mybasicandroidcodelib.nl.org.codelib.widget.City;
 import mybasicandroidcodelib.nl.org.codelib.widget.Street;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
+import static mybasicandroidcodelib.nl.org.codelib.config.Config.encryption;
+
 public class CompanyActivity extends BaseActivity implements OnRefreshListener {
 
     private static final String TAG = "CompanyActivity";
@@ -130,7 +132,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                 String result = null;
                 try {
                     SoapObject request = new SoapObject(ServiceConfig.nameSpace, ServiceConfig.methodName);//NameSpace
-                    request.addProperty("jkxlh", "21EC2020-3AEA-1069-A2DD-08002B30309D");
+                    request.addProperty("jkxlh", encryption);
                     request.addProperty("jkid", "GetTreeList");
                     request.addProperty("Deid", Config.loginBean.getData().get(0).getDeid());
                     request.addProperty("UserType", Config.loginBean.getData().get(0).getUsertype());
