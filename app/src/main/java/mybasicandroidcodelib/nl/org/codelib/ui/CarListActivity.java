@@ -169,7 +169,7 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
 
     public void onSearch(View view) {
-        carNum = search.getQuery().toString().trim();
+        carNum = search.getQuery().toString().trim().toUpperCase();
         if (!TextUtils.isEmpty(carNum)) {
             handler.sendEmptyMessage(QUERY);
         } else {
