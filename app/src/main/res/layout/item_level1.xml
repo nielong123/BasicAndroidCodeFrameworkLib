@@ -10,11 +10,11 @@
         android:orientation="horizontal">
 
         <TextView
+            android:text="1111111111"
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:gravity="center" />
 
         <View

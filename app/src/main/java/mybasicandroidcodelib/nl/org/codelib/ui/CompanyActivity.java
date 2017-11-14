@@ -206,6 +206,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                                 }
                             }
                             dataBean.addChild(node1);
+                            dataBean.open();
                         }
                     }
                     root.addChild(dataBean);

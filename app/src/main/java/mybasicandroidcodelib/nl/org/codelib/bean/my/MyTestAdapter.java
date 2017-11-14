@@ -73,7 +73,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
         return 0;
     }
 
-    /***************************************************   1   *********************************************/
+    /***************************************************   0   *********************************************/
     private class Level_0_ViewHolderCreator implements ViewHolderCreator {
 
         @NonNull

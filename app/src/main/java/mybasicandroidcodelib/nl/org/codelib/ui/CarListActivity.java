@@ -134,7 +134,8 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
             @Override
             public void convert(ViewHolderHelper helper, final CarListBean.DataBean bean) {
                 ((TextView) helper.getView(R.id.id)).setText("车牌号:" + (bean.getText() == null ? "无车牌号" : bean.getText()));                   //车牌
-                ((TextView) helper.getView(R.id.clock_state)).setText("状态:" + (bean.getCarstatus() == null ? "未知" : bean.getCarstatus()));      //签到状态
+                ((TextView) helper.getView(R.id.car_state)).setText("车辆状态:" + (bean.getCarstatus() == null ? "未知" : bean.getCarstatus()));      //签到状态
+                ((TextView) helper.getView(R.id.practice_state)).setText("培训状态:" + (bean.getStuId() == null ? "未培训" : "培训中"));      //签到状态
                 helper.getView(R.id.root).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
