@@ -58,21 +58,6 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
     @Override
     public void onClickChild(INode child) {
-        if (child instanceof RootNode.DataBean) {
-            Log.e(TAG, ((RootNode.DataBean) child).getName() + " is on click !");
-        }
-        if (child instanceof RootNode.ChildNode1) {
-            Log.e(TAG, ((RootNode.ChildNode1) child).getName() + " is on click !");
-        }
-        if (child instanceof RootNode.ChildNode2) {
-            Log.e(TAG, ((RootNode.ChildNode2) child).getName() + " is on click !");
-        }
-        if (child instanceof RootNode.ChildNode3) {
-            Log.e(TAG, ((RootNode.ChildNode3) child).getName() + " is on click !");
-        }
-        if (child instanceof RootNode.ChildNode4) {
-            Log.e(TAG, ((RootNode.ChildNode4) child).getName() + " is on click !");
-        }
     }
 
 
@@ -241,7 +226,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
         Level_3_ViewHolder(View itemView, OnMultiLevelItemClickListener listener) {
             super(itemView, TYPE_LEVEL_3, listener);
-            tvName = (TextView) itemView.findViewById(R.id.street_name);
+            tvName = (TextView) itemView.findViewById(R.id.name);
             number = (TextView) itemView.findViewById(R.id.number);
             root = (LinearLayout) itemView.findViewById(R.id.root);
         }
@@ -296,7 +281,7 @@ public class MyTestAdapter extends MultiLevelAdapter {
 
         Level_4_ViewHolder(View itemView, OnMultiLevelItemClickListener listener) {
             super(itemView, TYPE_LEVEL_4, listener);
-            tvName = (TextView) itemView.findViewById(R.id.street_name);
+            tvName = (TextView) itemView.findViewById(R.id.name);
             number = (TextView) itemView.findViewById(R.id.number);
             root = (LinearLayout) itemView.findViewById(R.id.root);
         }

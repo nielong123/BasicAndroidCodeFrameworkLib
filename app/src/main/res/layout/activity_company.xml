@@ -21,9 +21,12 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_00c78d_10dp"
         android:onClick="onSearch1"
         android:padding="4dp"
-        android:text="刷    新" />
+        android:text="刷    新"
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"

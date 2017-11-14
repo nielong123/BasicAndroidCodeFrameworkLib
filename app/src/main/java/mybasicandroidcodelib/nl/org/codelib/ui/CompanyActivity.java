@@ -88,7 +88,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
     protected void initView() {
         normalTitleBar.setTitleText("驾 培 管 理");
         normalTitleBar.setTvLeftVisiable(false);
-        normalTitleBar.setBackGroundColor(R.color.colorPrimary);
+        normalTitleBar.setBackGroundColor(this.getResources().getColor(R.color.wheel_item_text_color_selected));
         normalTitleBar.setRightImagSrc(R.mipmap.kpi_icon_detail);
         normalTitleBar.setOnRightImagListener(new View.OnClickListener() {
             @Override

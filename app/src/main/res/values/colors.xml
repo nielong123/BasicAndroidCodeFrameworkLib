@@ -31,6 +31,7 @@
     <color name="light_red">#EC4A48</color>
     <color name="light_blue">#039BE5</color>
     <color name="dark_red">#B93221</color>
+    <color name="color_787b84">#787b84</color>
 
     <!--通用背景色-->
     <color name="common_bg">@color/white</color>
@@ -74,4 +75,6 @@
     <color name="gender_select_male_pressed">#B2DFEE</color>
     <color name="gender_select_female_normal">#EEA9B8</color>
     <color name="gender_select_female_pressed">#EEA2AD</color>
+
+    <color name="color_07c68b">#07c68b</color>
 </resources>
