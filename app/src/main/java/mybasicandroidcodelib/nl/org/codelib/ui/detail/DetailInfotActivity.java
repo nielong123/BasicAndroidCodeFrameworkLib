@@ -31,6 +31,7 @@ import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarDetailBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
+import mybasicandroidcodelib.nl.org.codelib.ui.CarListActivity;
 import mybasicandroidcodelib.nl.org.codelib.ui.MapActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
@@ -71,9 +72,11 @@ public class DetailInfotActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case ERROR:
+                    DetailInfotActivity.this.stopProgressDialog();
                     ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
                     break;
                 case RELOAD:
+                    DetailInfotActivity.this.stopProgressDialog();
                     CarDetailBean detailBean = (CarDetailBean) msg.getData().getSerializable("detail");
                     final CarDetailBean.DataBean data = detailBean.getData().get(0);
                     carno.append(detailBean.getData().get(0).getCarno() == null ? "无车牌" : data.getCarno());
@@ -134,6 +137,7 @@ public class DetailInfotActivity extends BaseActivity {
     }
 
     private void getCarDetail() {
+        this.startProgressDialog();
         new Thread(new Runnable() {
 
             @Override

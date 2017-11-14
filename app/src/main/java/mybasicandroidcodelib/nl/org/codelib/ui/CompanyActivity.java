@@ -62,12 +62,14 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
             super.handleMessage(msg);
             switch (msg.what) {
                 case RELOAD:
+                    CompanyActivity.this.stopProgressDialog();
                     MyTestAdapter myAdapter = new MyTestAdapter(CompanyActivity.this, createDemoData(bean));
                     recyclerview.setLayoutManager(new LinearLayoutManager(CompanyActivity.this));
                     recyclerview.setAdapter(myAdapter);
                     break;
                 case ERROR:
                     ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
+                    CompanyActivity.this.stopProgressDialog();
                     break;
             }
             return;
@@ -125,7 +127,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
     }
 
     private void getCompanyList() {
-
+        CompanyActivity.this.startProgressDialog();
         new Thread(new Runnable() {
             @Override
             public void run() {

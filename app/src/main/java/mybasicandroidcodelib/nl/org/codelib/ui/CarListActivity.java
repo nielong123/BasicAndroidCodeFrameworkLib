@@ -74,11 +74,11 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
             super.handleMessage(msg);
             switch (msg.what) {
                 case ERROR:
+                    CarListActivity.this.stopProgressDialog();
                     ToastUitl.show("获取列表失败", Toast.LENGTH_SHORT);
                     break;
                 case RELOAD:
-//                    CarListBean bean = (CarListBean) msg.getData().getSerializable("list");
-//                    List<CarListBean.DataBean> dataList = bean.getData();
+                    CarListActivity.this.stopProgressDialog();
                     if (adapter.getPageBean().isRefresh()) {
                         recyclerview.setRefreshing(false);
                         if (originalList != null) {
@@ -135,7 +135,7 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
             public void convert(ViewHolderHelper helper, final CarListBean.DataBean bean) {
                 ((TextView) helper.getView(R.id.id)).setText("车牌号:" + (bean.getText() == null ? "无车牌号" : bean.getText()));                   //车牌
                 ((TextView) helper.getView(R.id.car_state)).setText("车辆状态:" + (bean.getCarstatus() == null ? "未知" : bean.getCarstatus()));      //签到状态
-                ((TextView) helper.getView(R.id.practice_state)).setText("培训状态:" + (bean.getStuId() == null ? "未培训" : "培训中"));      //签到状态
+                ((TextView) helper.getView(R.id.practice_state)).setText("培训状态:" + ("0".equals(bean.getStuId()) ? "未培训" : "培训中"));      //签到状态
                 helper.getView(R.id.root).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -194,6 +194,7 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
 
     private void getCarList(final String companyId) {
+        this.startProgressDialog();
         new Thread(new Runnable() {
 
             @Override
