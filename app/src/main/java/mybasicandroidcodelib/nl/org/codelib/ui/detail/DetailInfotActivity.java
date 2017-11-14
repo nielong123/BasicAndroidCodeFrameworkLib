@@ -102,8 +102,6 @@ public class DetailInfotActivity extends BaseActivity {
                     });
                     break;
             }
-
-
         }
     };
 
@@ -119,8 +117,8 @@ public class DetailInfotActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        title.setTitleText("车辆详情");
-        title.setBackGroundColor(R.color.colorPrimary);
+        title.setTitleText("车 辆 详 情");
+        title.setBackGroundColor(this.getResources().getColor(R.color.wheel_item_text_color_selected));
         title.setOnBackListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

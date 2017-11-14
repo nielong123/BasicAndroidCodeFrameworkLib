@@ -122,7 +122,7 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
     public void initView() {
         normalTitleBar.setTitleText(title);
         normalTitleBar.setTvLeftVisiable(true);
-        normalTitleBar.setBackGroundColor(R.color.colorPrimary);
+        normalTitleBar.setBackGroundColor(this.getResources().getColor(R.color.wheel_item_text_color_selected));
         normalTitleBar.setOnBackListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

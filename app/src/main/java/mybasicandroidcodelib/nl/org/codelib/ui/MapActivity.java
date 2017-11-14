@@ -71,8 +71,8 @@ public class MapActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        title.setTitleText("定位信息");
-        title.setBackGroundColor(R.color.colorPrimary);
+        title.setTitleText("定 位 信 息");
+        title.setBackGroundColor(this.getResources().getColor(R.color.wheel_item_text_color_selected));
         title.setOnBackListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

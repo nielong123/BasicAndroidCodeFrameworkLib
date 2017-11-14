@@ -26,9 +26,12 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_00c78d_10dp"
         android:onClick="onSearch"
         android:padding="4dp"
-        android:text="搜    索" />
+        android:text="搜    索"
+        android:textColor="@color/white" />
 
     <com.aspsine.irecyclerview.IRecyclerView
         android:id="@+id/irecyclerview"
