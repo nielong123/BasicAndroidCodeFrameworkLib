@@ -1,15 +1,15 @@
 package mybasicandroidcodelib.nl.org.codelib.ui;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -26,16 +26,13 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CompanyBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.my.MyTestAdapter;
 import mybasicandroidcodelib.nl.org.codelib.bean.my.RootNode;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
 import mybasicandroidcodelib.nl.org.codelib.ui.login.LoginActivity;
-import mybasicandroidcodelib.nl.org.codelib.widget.Area;
-import mybasicandroidcodelib.nl.org.codelib.widget.Cities;
-import mybasicandroidcodelib.nl.org.codelib.widget.City;
-import mybasicandroidcodelib.nl.org.codelib.widget.Street;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
 import static mybasicandroidcodelib.nl.org.codelib.config.Config.encryption;
@@ -44,17 +41,23 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
 
     private static final String TAG = "CompanyActivity";
 
+    @Nullable
     @BindView(R.id.title)
     NormalTitleBar normalTitleBar;
+
     @BindView(R.id.irecyclerview)
     RecyclerView recyclerview;
-    @BindView(R.id.button)
-    Button button;
 
     private final static int RELOAD = 0;
     private final static int ERROR = 1;
 
     CompanyBean bean;
+
+    @OnClick(R.id.button)
+    void submit() {
+        // TODO call server...
+        getCompanyList();
+    }
 
     Handler handler = new Handler() {
         @Override
@@ -113,12 +116,12 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                         }).create().show();
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onRefresh();
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onRefresh();
+//            }
+//        });
     }
 
     @Override
@@ -127,7 +130,7 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
     }
 
     private void getCompanyList() {
-        CompanyActivity.this.startProgressDialog();
+//        CompanyActivity.this.startProgressDialog();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -220,52 +223,9 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
         return null;
     }
 
-
-    public static Cities createDemoData() {
-
-        Cities cities = new Cities("重要城市");
-
-        City beijing = new City("北京");
-        Area chaoyang = new Area("朝阳");
-        Street sanlitun = new Street("三里屯");
-        Street wangjing = new Street("望京");
-        chaoyang.addChild(sanlitun);
-        chaoyang.addChild(wangjing);
-        chaoyang.open();
-        Area haidian = new Area("海淀");
-        Street zhongguancun = new Street("中关村");
-        Street wudaokou = new Street("五道口");
-        haidian.addChild(zhongguancun);
-        haidian.addChild(wudaokou);
-
-        beijing.addChild(chaoyang);
-        beijing.addChild(haidian);
-        beijing.open();
-
-        City shanghai = new City("上海");
-
-        Area dongqu = new Area("东区");
-        dongqu.addChild(new Street("街道一"));
-        dongqu.addChild(new Street("街道二"));
-        chaoyang.open();
-        Area xiqu = new Area("西区");
-        xiqu.addChild(new Street("街道三"));
-        xiqu.addChild(new Street("街道四"));
-
-        shanghai.addChild(dongqu);
-        shanghai.addChild(xiqu);
-        shanghai.open();
-
-        cities.addChild(beijing);
-        cities.addChild(shanghai);
-        cities.open();
-
-        return cities;
-    }
-
-    public void onSearch1(View view) {
-        getCompanyList();
-    }
+//    public void onSearch(View view) {
+//        getCompanyList();
+//    }
 
     @Override
     public void onRefresh() {

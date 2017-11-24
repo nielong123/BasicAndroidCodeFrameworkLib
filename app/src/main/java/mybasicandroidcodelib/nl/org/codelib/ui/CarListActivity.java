@@ -35,7 +35,6 @@ import java.util.List;
 import butterknife.BindView;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
-import mybasicandroidcodelib.nl.org.codelib.bean.my.RootNode;
 import mybasicandroidcodelib.nl.org.codelib.config.Config;
 import mybasicandroidcodelib.nl.org.codelib.ui.detail.DetailInfotActivity;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
