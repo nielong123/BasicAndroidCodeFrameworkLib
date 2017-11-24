@@ -164,10 +164,12 @@ public class DetailInfotActivity extends BaseActivity {
                     }
 
                 } catch (Exception e) {
-                    result = e.getMessage();
+                    String error = e.getMessage();
+                    Log.e(TAG, error);
                 }
-                CarDetailBean bean = null;
+
                 if (!TextUtils.isEmpty(result)) {
+                    CarDetailBean bean = null;
                     Log.e(TAG, result);
                     if (!result.contains("failed to connect")) {
                         Gson gson = new GsonBuilder().create();

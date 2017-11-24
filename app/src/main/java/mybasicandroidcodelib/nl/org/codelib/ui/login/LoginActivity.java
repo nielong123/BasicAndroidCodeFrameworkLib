@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,6 +61,7 @@ import static mybasicandroidcodelib.nl.org.codelib.config.Config.encryption;
  */
 public class LoginActivity extends BaseActivity implements LoaderCallbacks<Cursor> {
 
+    final String TAG = LoginActivity.this.getPackageName();
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -397,7 +399,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             }
 
         } catch (Exception e) {
-            result = e.getMessage();
+            String error = e.getMessage();
+            Log.e(TAG, error);
         }
         LoginBean bean = null;
         if (!TextUtils.isEmpty(result)) {

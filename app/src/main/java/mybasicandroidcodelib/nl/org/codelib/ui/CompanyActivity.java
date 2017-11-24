@@ -155,13 +155,12 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
                     }
 
                 } catch (Exception e) {
-                    result = e.getMessage();
+                    String error = e.getMessage();
+                    Log.e(TAG, error);
                 }
-                Log.e(TAG, result);
                 if (!TextUtils.isEmpty(result)) {
                     Log.e(TAG, "result = " + result);
                     if (!result.contains("failed to connect")) {
-                        //                    bean = new Gson().fromJson(result, CompanyBean.class);
                         bean = JSON.parseObject(result, CompanyBean.class);
                         Message msg = new Message();
                         msg.what = RELOAD;

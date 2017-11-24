@@ -221,7 +221,8 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
                         result = response.toString();//这里获得了webService的返回值
                     }
                 } catch (Exception e) {
-                    result = e.getMessage();
+                    String error = e.getMessage();
+                    Log.e(TAG, error);
                 }
                 CarListBean bean = null;
                 if (!TextUtils.isEmpty(result)) {

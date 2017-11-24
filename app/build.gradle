@@ -29,8 +29,8 @@ android {
         applicationId "com.exsun.loudi_driverhelper"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
-        versionName "2.1"
+        versionCode 4
+        versionName "2.3"
 
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
@@ -66,16 +66,14 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //apk命名
-            applicationVariants.all { variant ->    //批量修改Apk名字
-                variant.outputs.all { output ->
-                    if (!variant.buildType.isDebuggable()) {
-                        //获取签名的名字 variant.signingConfig.name
-                        //要被替换的源字符串
-                        def sourceFile = "-${variant.flavorName}-${variant.buildType.name}"
-                        //替换的字符串
-                        def replaceFile = "_V${variant.versionName}_${variant.flavorName}_${variant.buildType.name}_${releaseTime()}.apk"
-                        outputFileName = output.outputFile.name.replace(sourceFile, replaceFile);
-                        //遗留问题：如何获取当前module的name，如CodeBooke这个名字怎么获取到
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    if (variant.name.endsWith("Debug")) {
+                        //debug包
+                        outputFileName = "$applicationId _v${defaultConfig.versionName}_${debugTime()}_code${defaultConfig.versionCode}_debug.apk"
+                    } else {
+                        //release包
+                        outputFileName = "$applicationId _v${defaultConfig.versionName}_code${defaultConfig.versionCode}_${releaseTime()}_release.apk"
                     }
                 }
             }
@@ -140,5 +138,4 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    //view注解
 }
