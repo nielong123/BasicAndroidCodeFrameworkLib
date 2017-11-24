@@ -289,7 +289,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         if (mPresenter != null)
             mPresenter.onDestroy();
         mRxManager.clear();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
         AppManager.getAppManager().finishActivity(this);
     }
 

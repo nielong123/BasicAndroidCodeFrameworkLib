@@ -15,7 +15,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.jaydenxiao.common.base.BaseActivity;
 import com.jaydenxiao.common.commonwidget.NormalTitleBar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarDetailBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
 import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
@@ -23,9 +23,9 @@ import mybasicandroidcodelib.nl.org.mybasicandroidcodelib.R;
 
 public class MapActivity extends BaseActivity {
 
-    @Bind(R.id.title)
+    @BindView(R.id.title)
     NormalTitleBar title;
-    @Bind(R.id.mapview)
+    @BindView(R.id.mapview)
     TextureMapView mapview;
 
     private AMap aMap;

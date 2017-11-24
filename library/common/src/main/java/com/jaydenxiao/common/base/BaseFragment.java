@@ -195,12 +195,9 @@ public abstract  class BaseFragment<T extends BasePresenter, E extends BaseModel
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
         if (mPresenter != null)
             mPresenter.onDestroy();
         mRxManager.clear();
     }
-
-
-
 }

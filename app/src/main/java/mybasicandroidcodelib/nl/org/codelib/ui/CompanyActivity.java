@@ -25,7 +25,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CompanyBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.my.MyTestAdapter;
@@ -44,11 +44,11 @@ public class CompanyActivity extends BaseActivity implements OnRefreshListener {
 
     private static final String TAG = "CompanyActivity";
 
-    @Bind(R.id.title)
+    @BindView(R.id.title)
     NormalTitleBar normalTitleBar;
-    @Bind(R.id.irecyclerview)
+    @BindView(R.id.irecyclerview)
     RecyclerView recyclerview;
-    @Bind(R.id.button)
+    @BindView(R.id.button)
     Button button;
 
     private final static int RELOAD = 0;

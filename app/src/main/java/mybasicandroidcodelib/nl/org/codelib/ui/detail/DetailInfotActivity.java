@@ -26,7 +26,7 @@ import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarDetailBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
@@ -47,23 +47,23 @@ public class DetailInfotActivity extends BaseActivity {
     String carId;
 
 
-    @Bind(R.id.title)
+    @BindView(R.id.title)
     NormalTitleBar title;
-    @Bind(R.id.carno)
+    @BindView(R.id.carno)
     TextView carno;
-    @Bind(R.id.carsstate)
+    @BindView(R.id.carsstate)
     TextView carsstate;
-    @Bind(R.id.location)
+    @BindView(R.id.location)
     TextView location;
-    @Bind(R.id.coachname)
+    @BindView(R.id.coachname)
     TextView coachname;
-    @Bind(R.id.stuname)
+    @BindView(R.id.stuname)
     TextView stuname;
-    @Bind(R.id.gpstime)
+    @BindView(R.id.gpstime)
     TextView gpstime;
-    @Bind(R.id.longitudenew)
+    @BindView(R.id.longitudenew)
     TextView longitudenew;
-    @Bind(R.id.latitudenew)
+    @BindView(R.id.latitudenew)
     TextView latitudenew;
 
     Handler handler = new Handler() {

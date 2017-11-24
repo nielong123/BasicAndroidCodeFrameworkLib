@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/library/irecyclerview" />
             <option value="$PROJECT_DIR$/library/jcvideoplayer" />
             <option value="$PROJECT_DIR$/library/photopicker" />
-            <option value="$PROJECT_DIR$/library/selectordialog" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

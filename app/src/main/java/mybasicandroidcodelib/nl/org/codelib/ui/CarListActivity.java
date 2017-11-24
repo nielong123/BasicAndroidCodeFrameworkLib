@@ -32,7 +32,7 @@ import org.ksoap2.transport.HttpTransportSE;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import mybasicandroidcodelib.nl.org.codelib.api.webServices.ServiceConfig;
 import mybasicandroidcodelib.nl.org.codelib.bean.CarListBean;
 import mybasicandroidcodelib.nl.org.codelib.bean.my.RootNode;
@@ -47,13 +47,13 @@ public class CarListActivity extends BaseActivity implements OnRefreshListener {
 
     private static final String TAG = CarListActivity.class.getName();
 
-    @Bind(R.id.title)
+    @BindView(R.id.title)
     NormalTitleBar normalTitleBar;
-    @Bind(R.id.irecyclerview)
+    @BindView(R.id.irecyclerview)
     IRecyclerView recyclerview;
-    @Bind(R.id.search)
+    @BindView(R.id.search)
     SearchView search;
-    @Bind(R.id.button)
+    @BindView(R.id.button)
     Button button;
 
     CommonRecycleViewAdapter<CarListBean.DataBean> adapter;
